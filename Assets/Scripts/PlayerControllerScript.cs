@@ -24,6 +24,7 @@ public class PlayerControllerScript : MonoBehaviour
 
     private void Start()
     {
+
         animationControls = playerVisual.GetComponent<PlayerAnimationsController>();
     }
     private void FixedUpdate()
@@ -46,11 +47,12 @@ public class PlayerControllerScript : MonoBehaviour
     {
         if (context.performed && isGrounded())
         {
-            isJumping = true;
+            animationControls.animator.SetTrigger("JumpTrigger");
             playerRigidBody.linearVelocityY = jumpingPower;
-            Invoke("JumpCancel", 1f );
         }
     }
+
+
 
     public bool isGrounded()
     {

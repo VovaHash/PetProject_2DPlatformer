@@ -4,8 +4,8 @@ using static UnityEngine.Rendering.DebugUI;
 public class PlayerAnimationsController : MonoBehaviour
 {
 
-    [SerializeField] PlayerControllerScript player;
-    private Animator animator;
+    [SerializeField] PlayerControllerScript playerController;
+    public Animator animator;
 
     [Header("Run animation")]
     [SerializeField] string walkParamName;
@@ -25,16 +25,8 @@ public class PlayerAnimationsController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (player.isJumping == false)
-        {
-            animator.SetBool("Jump", false);
-        }
-        //if (player.isGrounded() && !player.isJumping)
-        //{
-        //    animator.SetBool("Jump", false);
-        //}
 
-        if (player.isWalking && player.horizontal != 0 )
+        if (playerController.isWalking && playerController.horizontal != 0)
         {
             animator.SetBool("Running", true);
         }
@@ -43,11 +35,6 @@ public class PlayerAnimationsController : MonoBehaviour
             animator.SetBool("Running", false);
         }
 
-
-        if (player.isGrounded() && player.isJumping)
-        {
-            animator.SetBool("Jump", true);
-        }
     }
 
 

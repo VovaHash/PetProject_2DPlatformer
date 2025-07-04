@@ -1895,7 +1895,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a6789f029aada8438e1fae6398d3f5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1534989829}
+  playerController: {fileID: 1534989829}
+  animator: {fileID: 0}
   walkParamName: Running
   walkParamValue: 0
   jumpParamName: Jump
