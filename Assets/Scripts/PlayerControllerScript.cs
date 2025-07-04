@@ -19,6 +19,7 @@ public class PlayerControllerScript : MonoBehaviour
 
     public bool isWalking;
     public bool isJumping;
+    private bool isFacingRight = true;
 
     public float horizontal;
 
@@ -30,7 +31,8 @@ public class PlayerControllerScript : MonoBehaviour
     private void FixedUpdate()
     {
         playerRigidBody.linearVelocityX = horizontal * speed;
-        Debug.Log(isJumping);
+        Turn();
+        Debug.Log(isFacingRight);
     }
 
 
@@ -40,7 +42,16 @@ public class PlayerControllerScript : MonoBehaviour
 
         horizontal = context.ReadValue<Vector2>().x;
         isWalking = true;
+   
+    }
 
+    public void Turn()
+    {
+        if (isFacingRight && horizontal < 0 || !isFacingRight && horizontal > 0)
+        {
+            isFacingRight = !isFacingRight;
+            transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+        }
     }
 
     public void Jump(InputAction.CallbackContext context)
@@ -57,6 +68,12 @@ public class PlayerControllerScript : MonoBehaviour
     public bool isGrounded()
     {
         return Physics2D.OverlapCapsule(groundCheck.position, new Vector2(5.7f,1.1f), CapsuleDirection2D.Horizontal, 0, groundLayer);
+    }
+
+
+    public void Aiming(InputAction.CallbackContext context)
+    {
+  
     }
 
     private void JumpCancel() { isJumping = false; }
